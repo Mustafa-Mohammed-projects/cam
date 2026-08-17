@@ -8,20 +8,8 @@ from kivy.utils import platform
 from security.crypto_engine import CryptoEngine
 from camera.camera_engine import CustomCameraView
 from gallery.gallery_engine import GalleryView
-# التعديلات المطلوبة داخل main.py
 from settings.settings_engine import SettingsView
 from security.app_lock import AppLockScreen
-
-# 1. إضافة شاشة الإعدادات داخل ScreenManager
-self.settings_screen = Screen(name='settings')
-self.settings_view = SettingsView(self.crypto_engine, self.storage_path)
-self.settings_screen.add_widget(self.settings_view)
-self.sm.add_widget(self.settings_screen)
-
-# 2. إضافة زر الإعدادات في Bottom Navigation Bar
-btn_set = Button(text="SETTINGS", background_color=(0.1, 0.1, 0.1, 1))
-btn_set.bind(on_release=lambda x: self.switch_tab('settings'))
-nav_bar.add_widget(btn_set)
 
 class SecurePhotoVaultApp(App):
     def build(self):
@@ -58,6 +46,12 @@ class SecurePhotoVaultApp(App):
         self.gal_screen.add_widget(self.gallery_view)
         self.sm.add_widget(self.gal_screen)
 
+        # 3. Settings Screen
+        self.settings_screen = Screen(name='settings')
+        self.settings_view = SettingsView(self.crypto_engine, self.storage_path)
+        self.settings_screen.add_widget(self.settings_view)
+        self.sm.add_widget(self.settings_screen)
+
         root.add_widget(self.sm)
 
         # Bottom Navigation Bar
@@ -69,8 +63,13 @@ class SecurePhotoVaultApp(App):
         btn_gal = Button(text="GALLERY", background_color=(0.1, 0.1, 0.1, 1))
         btn_gal.bind(on_release=lambda x: self.switch_tab('gallery'))
 
+        btn_set = Button(text="SETTINGS", background_color=(0.1, 0.1, 0.1, 1))
+        btn_set.bind(on_release=lambda x: self.switch_tab('settings'))
+
         nav_bar.add_widget(btn_cam)
         nav_bar.add_widget(btn_gal)
+        nav_bar.add_widget(btn_set)
+
         root.add_widget(nav_bar)
 
         return root
@@ -78,6 +77,8 @@ class SecurePhotoVaultApp(App):
     def switch_tab(self, tab_name: str):
         if tab_name == 'gallery':
             self.gallery_view.refresh_gallery()
+        elif tab_name == 'settings':
+            self.settings_view.update_stats()
         self.sm.current = tab_name
 
     def _apply_android_security_flags(self):
