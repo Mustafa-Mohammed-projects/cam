@@ -7,7 +7,8 @@ source.include_exts = py,png,jpg,kv,atlas
 version = 1.0.0
 
 # Dependencies
-requirements = python3,kivy,cryptography,pillow,pyjnius
+# Removed cryptography temporarily due to Python 3.14 compatibility issues
+requirements = python3,kivy,pillow,pyjnius
 
 # Android Specifics
 android.accept_sdk_license = True
@@ -16,6 +17,9 @@ android.sdk = 33
 android.ndk = 25b
 android.api = 33
 android.minapi = 21
+# Use only arm64-v8a to avoid 32-bit ARM compilation issues with Python 3.14
+android.archs = arm64-v8a
+
 # Permissions
 android.permissions = CAMERA, USE_BIOMETRIC, READ_MEDIA_IMAGES, WRITE_EXTERNAL_STORAGE, INTERNET
 
