@@ -23,6 +23,12 @@ android.manifest.launchMode = singleTask
 orientation = portrait
 fullscreen = 1
 
+android.release_artifact = apk
+android.keystore = 
+android.keystore_passwd = 
+android.keyalias = 
+android.keyalias_passwd = 
+
 [buildozer]
 log_level = 2
 warn_on_root = 1
