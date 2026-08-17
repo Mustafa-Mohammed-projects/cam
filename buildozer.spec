@@ -10,11 +10,11 @@ version = 1.0.0
 requirements = python3,kivy,cryptography,pillow,pyjnius
 
 # Android Specifics
-android.api = 33
-android.minapi = 26
+
 android.sdk = 33
 android.ndk = 25b
-
+android.api = 33
+android.minapi = 21
 # Permissions
 android.permissions = CAMERA, USE_BIOMETRIC, READ_MEDIA_IMAGES, WRITE_EXTERNAL_STORAGE, INTERNET
 
