@@ -10,7 +10,8 @@ version = 1.0.0
 requirements = python3,kivy,cryptography,pillow,pyjnius
 
 # Android Specifics
-
+android.accept_sdk_license = True
+android.allow_backup = True
 android.sdk = 33
 android.ndk = 25b
 android.api = 33
