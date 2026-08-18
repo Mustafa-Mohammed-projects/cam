@@ -8,7 +8,7 @@ version = 1.0.0
 
 # Dependencies
 # Removed cryptography temporarily due to Python 3.14 compatibility issues
-requirements = python3,kivy,pillow,pyjnius
+requirements = python3,kivy,pillow,pyjnius,openssl,cryptography
 
 # Android Specifics
 android.accept_sdk_license = True
